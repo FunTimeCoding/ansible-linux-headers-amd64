@@ -2,4 +2,10 @@
 - apt:
     name: linux-headers-amd64
   remote_user: root
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' and kernel.release == 'stable'
+
+- apt:
+    name: linux-headers-amd64
+    default_release: buster-backports
+  remote_user: root
+  when: ansible_os_family == 'Debian' and kernel.release == 'backports'
